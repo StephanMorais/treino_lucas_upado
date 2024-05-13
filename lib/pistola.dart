@@ -105,9 +105,13 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
 
   void _previousExercise() {
     setState(() {
-      currentExerciseIndex--;
-      if (currentExerciseIndex >= exercises.length) {
-        currentExerciseIndex = 0;
+      if (currentExerciseIndex > 0) {
+        currentExerciseIndex--;
+        if (currentExerciseIndex >= exercises.length) {
+          currentExerciseIndex = 0;
+        } else {
+          currentExerciseIndex = 0;
+        }
       }
     });
   }

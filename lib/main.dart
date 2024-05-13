@@ -36,25 +36,25 @@ class HomePage extends StatelessWidget {
 
     switch (dayOfWeek) {
       case '1':
-        dayMessage = 'DIA DE TREINAR HEMA';
+        dayMessage = 'HEMA';
         break;
       case '2':
-        dayMessage = 'DIA DE TREINAR PISTOLA';
+        dayMessage = 'PISTOLA';
         break;
       case '3':
-        dayMessage = 'DIA DE DESCANSO';
+        dayMessage = 'DESCANSO';
         break;
       case '4':
-        dayMessage = 'DIA DE TREINAR WAKISASHI';
+        dayMessage = 'WAKISASHI';
         break;
       case '5':
-        dayMessage = 'DIA DE TREINAR FACA';
+        dayMessage = 'DFACA';
         break;
       case '6':
-        dayMessage = 'DIA DE DESNCANSO';
+        dayMessage = 'DESNCANSO';
         break;
       case '7':
-        dayMessage = 'DIA DE DESCANSO';
+        dayMessage = 'DESCANSO';
         break;
       default:
         dayMessage = '';
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'HOJE É $dayMessage',
+              '$dayMessage',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
