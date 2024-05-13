@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'pistola.dart': (context) => ExercisepistolaPage(),
         'wakisashi.dart': (context) => ExercisewakisashiPage(),
-        'faca': (context) => ExercisefacaPage(),
-        'espadalonga': (context) => ExerciseespadaPage(),
+        'faca.dart': (context) => ExercisefacaPage(),
+        'espadalonga.dart': (context) => ExerciseespadaPage(),
       },
       home: HomePage(),
     );
