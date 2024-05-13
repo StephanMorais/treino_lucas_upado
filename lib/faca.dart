@@ -111,11 +111,8 @@ class _ExercisePageState extends State<ExercisefacaPage> {
     setState(() {
       if (currentExerciseIndex > 0) {
         currentExerciseIndex--;
-        if (currentExerciseIndex >= exercises.length) {
-          currentExerciseIndex = 0;
-        } else {
-          currentExerciseIndex = 0;
-        }
+      } else {
+        currentExerciseIndex = 0;
       }
     });
   }

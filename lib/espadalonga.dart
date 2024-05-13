@@ -114,11 +114,9 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
     setState(() {
       if (currentExerciseIndex > 0) {
         currentExerciseIndex--;
-        if (currentExerciseIndex >= exercises.length) {
-          currentExerciseIndex = 0;
-        } else {
-          currentExerciseIndex = 0;
-        }
+        if (currentExerciseIndex >= exercises.length) currentExerciseIndex = 0;
+      } else {
+        currentExerciseIndex = 0;
       }
     });
   }

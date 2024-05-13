@@ -109,9 +109,9 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
         currentExerciseIndex--;
         if (currentExerciseIndex >= exercises.length) {
           currentExerciseIndex = 0;
-        } else {
-          currentExerciseIndex = 0;
         }
+      } else {
+        currentExerciseIndex = 0;
       }
     });
   }
