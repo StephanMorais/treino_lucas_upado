@@ -42,9 +42,11 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
     Exercise("DESCANSE", "descanso"),
     Exercise("Cortes horizontais com guarda invertida", "repeticao"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("Kata dos 8 cortes-mão esquerda", "kata"),
+    Exercise("Kata dos 8 cortes", "kata"),
+    Exercise("Cortes sequenciais no ar - mão esquerda", "tempo"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("Chiburi e Noto-mão esquerda", "repeticao"),
+    Exercise("DESCANSE", "descanso"),
+    Exercise("Chiburi e Noto", "repeticao"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Giro com o pulso para frente", "repeticao"),
     Exercise("Giro como pulso para trás", "repeticao"),
@@ -55,7 +57,9 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
     Exercise("DESCANSE", "descanso"),
     Exercise("Cortes horizontais com guarda invertida", "repeticao"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("Kata dos 8 cortes-mão direita", "kata"),
+    Exercise("Kata dos 8 cortes", "kata"),
+    Exercise("DESCANSE", "descanso"),
+    Exercise("Cortes sequenciais no ar - mão direita", "tempo"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Chiburi e Noto", "repeticao"),
     Exercise("DESCANSE", "descanso"),
@@ -65,7 +69,7 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
   int currentExerciseIndex = 0;
   Timer? _timer;
   int _tempoSeconds = 120;
-  int _descansoSeconds = 20;
+  int _descansoSeconds = 10;
 
   @override
   void initState() {
@@ -93,7 +97,7 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
           if (_descansoSeconds > 0) {
             _descansoSeconds--;
           } else {
-            _descansoSeconds = 20;
+            _descansoSeconds = 10;
             _nextExercise();
           }
         }
@@ -154,7 +158,7 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
                 ),
               if (exercises[currentExerciseIndex].type == "kata")
                 Text(
-                  '4X',
+                  '4X CADA MÃO',
                   style: TextStyle(fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
@@ -212,6 +216,21 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
                         backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: const Text(
+                  'INICIO',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                ),
               ),
             ],
           ),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'pistola.dart';
+import 'wakisashi.dart';
+import 'faca.dart';
+import 'main.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +25,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ExerciseespadaPage(),
+      routes: {
+        'pistola.dart': (context) => ExercisepistolaPage(),
+        'wakisashi.dart': (context) => ExercisewakisashiPage(),
+        'faca.dart': (context) => ExercisefacaPage(),
+        'espadalonga.dart': (context) => ExerciseespadaPage(),
+        '/': (context) => HomePageIndex(),
+      },
     );
   }
 }
@@ -36,6 +46,10 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
     Exercise("Giro com o pulso para frente", "repeticao"),
     Exercise("Giro como pulso para trás", "repeticao"),
     Exercise("DESCANSE", "descanso"),
+    Exercise("Giro como pulso com as duas mãos para frente", "giro"),
+    Exercise("Giro como pulso com as duas mãos para trás", "giro"),
+    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSE", "descanso"),
     Exercise("Corte fendente com deslocamento", "repeticao"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Corte volante com deslocamento", "repeticao"),
@@ -48,7 +62,7 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
     Exercise("DESCANSE", "descanso"),
     Exercise("Coverta com corte mão esquerda", "tempo"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("Giro como pulso com as duas mãos", "repeticao"),
+    Exercise("Coverta com corte mão direita", "tempo"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Corte fendente com deslocamento", "repeticao"),
     Exercise("DESCANSE", "descanso"),
@@ -65,7 +79,7 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
   int currentExerciseIndex = 0;
   Timer? _timer;
   int _tempoSeconds = 120;
-  int _descansoSeconds = 20;
+  int _descansoSeconds = 10;
 
   @override
   void initState() {
@@ -93,7 +107,7 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
           if (_descansoSeconds > 0) {
             _descansoSeconds--;
           } else {
-            _descansoSeconds = 20;
+            _descansoSeconds = 10;
             _nextExercise();
           }
         }
@@ -147,6 +161,12 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
               if (exercises[currentExerciseIndex].type == "repeticao")
                 Text(
                   '15X CADA MÃO',
+                  style: TextStyle(fontSize: 30.0),
+                  textAlign: TextAlign.center,
+                ),
+              if (exercises[currentExerciseIndex].type == "giro")
+                Text(
+                  '15X COM CADA GUARDA',
                   style: TextStyle(fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
@@ -210,6 +230,21 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
                         backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: const Text(
+                  'INICIO',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                ),
               ),
             ],
           ),

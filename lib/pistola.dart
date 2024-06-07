@@ -33,7 +33,9 @@ class ExercisepistolaPage extends StatefulWidget {
 
 class _ExercisePageState extends State<ExercisepistolaPage> {
   List<Exercise> exercises = [
-    Exercise("Engajamento - faça mira", "repeticao"),
+    Exercise("Engajamento com coldre - faça mira", "repeticao"),
+    Exercise("DESCANSE", "descanso"),
+    Exercise("Engajamento civil - faça mira", "repeticao"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Engajamento de ombro", "repeticao"),
     Exercise("DESCANSE", "descanso"),
@@ -43,7 +45,9 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
     Exercise("DESCANSE", "descanso"),
     Exercise("Coronhada", "repeticao"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("Engajamento - faça  mira", "repeticao"),
+    Exercise("Engajamento com coldre - faça mira", "repeticao"),
+    Exercise("DESCANSE", "descanso"),
+    Exercise("Engajamento civil - faça mira", "repeticao"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Engajamento de ombro- mão direita", "repeticao"),
     Exercise("DESCANSE", "descanso"),
@@ -57,8 +61,8 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
 
   int currentExerciseIndex = 0;
   Timer? _timer;
-  int _tempoSeconds = 120;
-  int _descansoSeconds = 20;
+  int _tempoSeconds = 180;
+  int _descansoSeconds = 10;
 
   @override
   void initState() {
@@ -79,14 +83,14 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
           if (_tempoSeconds > 0) {
             _tempoSeconds--;
           } else {
-            _tempoSeconds = 120;
+            _tempoSeconds = 180;
             _nextExercise();
           }
         } else if (exercises[currentExerciseIndex].type == "descanso") {
           if (_descansoSeconds > 0) {
             _descansoSeconds--;
           } else {
-            _descansoSeconds = 20;
+            _descansoSeconds = 10;
             _nextExercise();
           }
         }
@@ -141,7 +145,7 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
                 ),
               if (exercises[currentExerciseIndex].type == "repeticao")
                 Text(
-                  '15X CADA MÃO',
+                  '20X CADA MÃO',
                   style: TextStyle(fontSize: 30),
                   textAlign: TextAlign.center,
                 ),
@@ -205,6 +209,21 @@ class _ExercisePageState extends State<ExercisepistolaPage> {
                         backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: const Text(
+                  'INICIO',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                ),
               ),
             ],
           ),

@@ -61,8 +61,8 @@ class _ExercisePageState extends State<ExercisefacaPage> {
 
   int currentExerciseIndex = 0;
   Timer? _timer;
-  int _tempoSeconds = 130;
-  int _descansoSeconds = 30;
+  int _tempoSeconds = 120;
+  int _descansoSeconds = 10;
 
   @override
   void initState() {
@@ -83,14 +83,14 @@ class _ExercisePageState extends State<ExercisefacaPage> {
           if (_tempoSeconds > 0) {
             _tempoSeconds--;
           } else {
-            _tempoSeconds = 130;
+            _tempoSeconds = 120;
             _nextExercise();
           }
         } else if (exercises[currentExerciseIndex].type == "descanso") {
           if (_descansoSeconds > 0) {
             _descansoSeconds--;
           } else {
-            _descansoSeconds = 30;
+            _descansoSeconds = 10;
             _nextExercise();
           }
         }
@@ -142,7 +142,7 @@ class _ExercisePageState extends State<ExercisefacaPage> {
                 ),
               if (exercises[currentExerciseIndex].type == "repeticao")
                 Text(
-                  '15X CADA MÃO',
+                  '20X CADA MÃO',
                   style: TextStyle(fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
@@ -206,6 +206,21 @@ class _ExercisePageState extends State<ExercisefacaPage> {
                         backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: const Text(
+                  'INICIO',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                ),
               ),
             ],
           ),
