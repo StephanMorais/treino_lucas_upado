@@ -18,8 +18,8 @@ class diario extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        'pistola.dart': (context) => ExercisepistolaPage(),
-        'wakisashi.dart': (context) => ExercisewakisashiPage(),
+        'pistola.dart': (context) => ExercisePistolaPage(),
+        'wakisashi.dart': (context) => ExerciseWakisashiPage(),
         'faca.dart': (context) => ExercisefacaPage(),
         'espadalonga.dart': (context) => ExerciseespadaPage(),
         '/': (context) => HomePageIndex(),

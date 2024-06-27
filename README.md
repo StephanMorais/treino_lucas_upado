@@ -1,16 +1,81 @@
 # treino_lucas_upado
 
-A new Flutter project.
+App desenvolvido para regrar o treino do Lucas com seus equipamentos, para fins marciais e esportivos.
 
-## Getting Started
+## Diagrama de classes
 
-This project is a starting point for a Flutter application.
+```mermaid
+classDiagram
+    class MyApp {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
 
-A few resources to get you started if this is your first Flutter project:
+    class HomePageIndex {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    class diario {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    class diarioTreino {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    class selecao {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    class Exercise {
+        << (S, #FF5733) >>
+        - final String name
+        - final String type
+        + Exercise(name: String, type: String)
+    }
+
+    class ExercisePistolaPage {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    class ExerciseWakisashiPage {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    class ExercisefacaPage {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    class ExerciseespadaPage {
+        << (S, #FF5733) StatelessWidget >>
+        build(BuildContext context)
+    }
+
+    MyApp --|> StatelessWidget
+    MyApp --> HomePageIndex
+    MyApp --> selecao
+    MyApp --> diario
+
+    HomePageIndex --|> StatelessWidget
+
+    diario --|> StatelessWidget
+    diario --> diarioTreino
+
+    diarioTreino --|> StatelessWidget
+
+    selecao --|> StatelessWidget
+
+    Exercise --|> Object
+
+    ExercisePistolaPage --|> StatelessWidget
+    ExerciseWakisashiPage --|> StatelessWidget
+    ExercisefacaPage --|> StatelessWidget
+    ExerciseespadaPage --|> StatelessWidget
+```

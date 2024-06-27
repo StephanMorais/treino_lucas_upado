@@ -21,17 +21,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ExercisewakisashiPage(),
+      home: ExerciseWakisashiPage(),
     );
   }
 }
 
-class ExercisewakisashiPage extends StatefulWidget {
+class ExerciseWakisashiPage extends StatefulWidget {
   @override
-  _ExercisePageState createState() => _ExercisePageState();
+  _ExerciseWakisashiPageState createState() => _ExerciseWakisashiPageState();
 }
 
-class _ExercisePageState extends State<ExercisewakisashiPage> {
+class _ExerciseWakisashiPageState extends State<ExerciseWakisashiPage> {
   List<Exercise> exercises = [
     Exercise("Giro com o pulso para frente", "repeticao"),
     Exercise("Giro como pulso para trás", "repeticao"),
@@ -45,9 +45,7 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
     Exercise("Kata dos 8 cortes", "kata"),
     Exercise("Cortes sequenciais no ar - mão esquerda", "tempo"),
     Exercise("DESCANSE", "descanso"),
-    Exercise("DESCANSE", "descanso"),
     Exercise("Chiburi e Noto", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
     Exercise("Giro com o pulso para frente", "repeticao"),
     Exercise("Giro como pulso para trás", "repeticao"),
     Exercise("DESCANSE", "descanso"),
@@ -58,12 +56,10 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
     Exercise("Cortes horizontais com guarda invertida", "repeticao"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Kata dos 8 cortes", "kata"),
-    Exercise("DESCANSE", "descanso"),
     Exercise("Cortes sequenciais no ar - mão direita", "tempo"),
     Exercise("DESCANSE", "descanso"),
     Exercise("Chiburi e Noto", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
-    Exercise("EXERCÍCIO CONCLUÍDO, PODE FECHAR O APLICATIVO!", 'final')
+    Exercise("EXERCÍCIO CONCLUÍDO, PODE FECHAR O APLICATIVO!", 'final'),
   ];
 
   int currentExerciseIndex = 0;
@@ -118,122 +114,146 @@ class _ExercisePageState extends State<ExercisewakisashiPage> {
     setState(() {
       if (currentExerciseIndex > 0) {
         currentExerciseIndex--;
-        if (currentExerciseIndex >= exercises.length) {
-          currentExerciseIndex = 0;
-        }
       } else {
-        currentExerciseIndex = 0;
+        currentExerciseIndex = exercises.length - 1;
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    String nextExerciseName = currentExerciseIndex + 1 < exercises.length
+        ? exercises[currentExerciseIndex + 1].name
+        : 'Nenhum';
+
     return Scaffold(
-        appBar: AppBar(
-          title:
-              Text('Exercício ${currentExerciseIndex + 1}/${exercises.length}'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                exercises[currentExerciseIndex].name,
-                style: TextStyle(fontSize: 18.0),
+      appBar: AppBar(
+        title:
+            Text('Exercício ${currentExerciseIndex + 1}/${exercises.length}'),
+      ),
+      body: Column(
+        children: [
+          if (exercises[currentExerciseIndex].type != "final")
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Próximo: $nextExerciseName',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30.0),
-              if (exercises[currentExerciseIndex].type == "tempo")
-                Text(
-                  '$_tempoSeconds',
-                  style: TextStyle(fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              if (exercises[currentExerciseIndex].type == "repeticao")
-                Text(
-                  '15X CADA MÃO',
-                  style: TextStyle(fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              if (exercises[currentExerciseIndex].type == "kata")
-                Text(
-                  '4X CADA MÃO',
-                  style: TextStyle(fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              if (exercises[currentExerciseIndex].type == "descanso")
-                Text(
-                  '$_descansoSeconds',
-                  style: TextStyle(fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              if (exercises[currentExerciseIndex].type == "repeticao")
-                SizedBox(height: 18.0),
-              if (exercises[currentExerciseIndex].type == "repeticao")
-                ElevatedButton(
-                    onPressed: () {
-                      _nextExercise();
-                    },
-                    child: Text('PRONTO'),
-                    style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            const Color.fromARGB(255, 255, 255, 255),
-                        backgroundColor: const Color.fromARGB(255, 0, 0, 0))),
-              if (exercises[currentExerciseIndex].type == "kata")
-                SizedBox(height: 18.0),
-              if (exercises[currentExerciseIndex].type == "kata")
-                ElevatedButton(
-                  onPressed: () {
-                    _nextExercise();
-                  },
-                  child: Text('PRONTO'),
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      _previousExercise();
-                    },
-                    child: Text('<ANTERIOR'),
-                    style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            const Color.fromARGB(255, 255, 255, 255),
-                        backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+            ),
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    exercises[currentExerciseIndex].name,
+                    style: TextStyle(fontSize: 18.0),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 30.0),
+                  if (exercises[currentExerciseIndex].type == "tempo")
+                    Text(
+                      '$_tempoSeconds',
+                      style: TextStyle(fontSize: 30.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (exercises[currentExerciseIndex].type == "repeticao")
+                    Text(
+                      '15X CADA MÃO',
+                      style: TextStyle(fontSize: 30.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (exercises[currentExerciseIndex].type == "kata")
+                    Text(
+                      '4X CADA MÃO',
+                      style: TextStyle(fontSize: 30.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (exercises[currentExerciseIndex].type == "descanso")
+                    Text(
+                      '$_descansoSeconds',
+                      style: TextStyle(fontSize: 30.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (exercises[currentExerciseIndex].type == "repeticao")
+                    SizedBox(height: 18.0),
+                  if (exercises[currentExerciseIndex].type == "repeticao")
+                    ElevatedButton(
+                      onPressed: () {
+                        _nextExercise();
+                      },
+                      child: Text('PRONTO'),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black,
+                      ),
+                    ),
+                  if (exercises[currentExerciseIndex].type == "kata")
+                    SizedBox(height: 18.0),
+                  if (exercises[currentExerciseIndex].type == "kata")
+                    ElevatedButton(
+                      onPressed: () {
+                        _nextExercise();
+                      },
+                      child: Text('PRONTO'),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black,
+                      ),
+                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          _previousExercise();
+                        },
+                        child: Text('<ANTERIOR'),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.black,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          _nextExercise();
+                        },
+                        child: Text('PROXIMO >'),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      _nextExercise();
+                      Navigator.pushReplacementNamed(context, '/');
                     },
-                    child: Text('PROXIMO >'),
+                    child: const Text(
+                      'INICIO',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            const Color.fromARGB(255, 255, 255, 255),
-                        backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.black,
+                    ),
                   ),
                 ],
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
-                    backgroundColor: const Color.fromARGB(255, 0, 0, 0)),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/');
-                },
-                child: const Text(
-                  'INICIO',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 255, 255)),
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }

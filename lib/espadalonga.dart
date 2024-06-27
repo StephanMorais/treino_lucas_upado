@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        'pistola.dart': (context) => ExercisepistolaPage(),
-        'wakisashi.dart': (context) => ExercisewakisashiPage(),
+        'pistola.dart': (context) => ExercisePistolaPage(),
+        'wakisashi.dart': (context) => ExerciseWakisashiPage(),
         'faca.dart': (context) => ExercisefacaPage(),
         'espadalonga.dart': (context) => ExerciseespadaPage(),
         '/': (context) => HomePageIndex(),
@@ -45,34 +45,32 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
   List<Exercise> exercises = [
     Exercise("Giro com o pulso para frente", "repeticao"),
     Exercise("Giro como pulso para trás", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Giro como pulso com as duas mãos para frente", "giro"),
     Exercise("Giro como pulso com as duas mãos para trás", "giro"),
-    Exercise("DESCANSE", "descanso"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte fendente com deslocamento", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte volante com deslocamento", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte sotano com mudança de guarda - mão direita em cima",
         "repeticao"),
-    Exercise("DESCANSE", "descanso"),
-    Exercise("Corte fendente com deslocamento lateral", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
+    Exercise("Corte com fio falso usando as duas mãos", "tempo"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Canguru com corte", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Coverta com corte mão esquerda", "tempo"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte fendente com deslocamento", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte volante com deslocamento", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Corte sotano com mudança de guardamão esquerda em cima", "tempo"),
-    Exercise("DESCANSE", "descanso"),
-    Exercise("Corte fendente com deslocamento lateral", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise(
+        "Corte com fio falso usando as duas mãos - guarda invertida", "tempo"),
     Exercise("Canguru com corte", "repeticao"),
-    Exercise("DESCANSE", "descanso"),
+    Exercise("DESCANSO", "descanso"),
     Exercise("Coverta com corte mão direita", "tempo"),
     Exercise("EXERCÍCIO CONCLUÍDO, PODE FECHAR O APLICATIVO!", 'final')
   ];
@@ -129,7 +127,6 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
     setState(() {
       if (currentExerciseIndex > 0) {
         currentExerciseIndex--;
-        if (currentExerciseIndex >= exercises.length) currentExerciseIndex = 0;
       } else {
         currentExerciseIndex = 0;
       }
@@ -147,6 +144,18 @@ class _ExercisePageState extends State<ExerciseespadaPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              if (exercises[currentExerciseIndex].type != "final")
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Próximo: ${currentExerciseIndex + 1 < exercises.length ? exercises[currentExerciseIndex + 1].name : 'Nenhum'}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               Text(
                 exercises[currentExerciseIndex].name,
                 style: TextStyle(fontSize: 18.0),
